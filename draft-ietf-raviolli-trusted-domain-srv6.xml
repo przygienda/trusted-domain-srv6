@@ -110,30 +110,27 @@
 
             </t>
 
-            <dl>
-                <dt>
+            <t>
                     Processing of the protocol packet on an interface requires explicit configuration with
-                    default drop behavior.
-                </dt>
-                <dt>
+                default drop behavior.</t>
+                <t>
                     Leaking of protocol packets beyond the boundary of fail-closed domain requires
                     explicit config.
-                </dt>
-                <dt>
+                </t>
+                <t>
                     Fail closed protocols must be identifiable by their top level (e.g. link layer) encoding.
-                </dt>
-                <dt>
+                </t>
+                <t>
                     Classification of the protocol must be deterministic.
-                </dt>
-                <dt>
+                </t>
+                <t>
                     Confining the protocol to the trusted domaim must not require complex processing in
                     either HW or software.
-                </dt>
-                <dt>
+                </t>
+                <t>
                     Boundary of a trusted domain consists of a set of interfaces that exhibit default
                     behavior.
-                </dt>
-            </dl>
+                </t>
         </section>
 
         <section anchor="IANA" title="IANA Considerations" toc="default">
