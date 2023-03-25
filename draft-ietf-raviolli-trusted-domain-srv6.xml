@@ -18,6 +18,22 @@
             IS-IS Flood Reflection
         </title>
 
+        <author fullname="Andrew Alston" initials="A." surname="Alston">
+            <organization>Liquid Intelligent Technologies</organization>
+            <address>
+                <email>andrew-ietf@liquid.tech
+                </email>
+                <uri/>
+            </address>
+        </author>
+        <author fullname="Tom Hill" initials="T." surname="Hill">
+            <organization>British Telecom</organization>
+            <address>
+                <email>tom.2.hill@bt.com
+                </email>
+                <uri/>
+            </address>
+        </author>
         <author fullname="Tony Przygienda" initials="A." surname="Przygienda">
             <organization>Juniper</organization>
             <address>
@@ -82,25 +98,27 @@
 
         <section title="Description" >
             <t>
-
+                 SRv6 as designed has interest from various sectors, though is deployment is being limited by the fact that
+                 there are known security problems in the protocol design. This document specifies a standard to create a
+                 solution that closes some of the major security concerns, while retaining the basis of the SRv6 protocol.
             </t>
         </section>
 
-        <section title="SRv6 Security Problem">
+        <section title="The SRv6 Security Problem">
             <t>
                 SRv6 relies in its architecture on the concept of limited domain which is too vague
                 a concept to form a solid security base.
             </t>
             <t>
-                Limited domains that fail can open and will invariably leak. (so far this is nonsense)
+                Limited domains that fail can open, can, and will, invariably leak beyond the domain due to human error. 
             </t>
             <t>
-                As per RFC8402 SRv6 that leaks into a domain is a security violation (section 8).
+                As per RFC8402 Section 8, SRv6 that leaks beyond the border of a trusted domain creates a security violation.
             </t>
             <t>
-                Solution is to build a limited domain that is properly trusted/closed.
+                The solution is to create a trusted domain that has a default fail-closed approach/
             </t>
-            <t> Exmaples of fail closed protocols: mpls/clns/llpd/bier</t>
+            <t> Exmaples of fail closed protocols currently include: mpls/clns/llpd/bier</t>
         </section>
 
         <section title="Characteristics of a Fail-Closed Protocol Domain" anchor="fcpd">
@@ -125,13 +143,42 @@
                 </t>
                 <t>
                     Confining the protocol to the trusted domaim must not require complex processing in
-                    either HW or software.
+                    either hardware or software, so as to allow for scalability.
                 </t>
                 <t>
-                    Boundary of a trusted domain consists of a set of interfaces that exhibit default
+                    The boundary of a trusted domain consists of a set of interfaces that exhibit default
                     behavior.
                 </t>
         </section>
+         
+         <section title="SRv6 in the context of a trusted domain - an objective analysis">
+              <t>
+                   It is currently impossible to differentiate SRv6 and IPv6 at the link-layer
+              </t>
+              <t>
+                   In the event of a frame being sent into a trusted domain, either accidently or by a malicious actor,
+                   it is possible to send the frame to a node binding the specific SID, and have the packet processed,
+                   irrespective of the content of the underlying (encapsulated) frame
+              </t>
+              <t>
+                   The current security proposals in RFC8402 section 8.2, security is based on the application of
+                   filters preventing ingress traffic at the boundary routers destined towards a SID within the domain.
+                   Such filtering is prone to configuration errors and in addition, has significant impact on TCAM utilization 
+                   on devices that have large numbers of ingress points into the domain
+              </t>
+              <t> 
+                   In the context of a trusted domain, anything outside of the operators control should not be considered
+                   trusted.  This means applying filters to prevent leakage into the domain at every customer port,
+                   every server, and every cloud stack.  Any lapse in the filters can cause grevious harm
+              </t>
+         </section>
+         
+         <section title="Trusted-Domain Implementation">
+              <t>
+                   To implement SRv6 in the context of a trusted domain, it is necessary to create a fail-closed scenario.
+                   To do this, requires modification of the protoccol at both the boundary routers nd the transit nodes
+              </t>
+              
 
         <section anchor="IANA" title="IANA Considerations" toc="default">
 
