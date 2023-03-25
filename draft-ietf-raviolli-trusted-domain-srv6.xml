@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?rfc toc="yes"?>
+<?rfc tocompact="yes"?>
+<?rfc tocdepth="3"?>
+<?rfc tocindent="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc comments="no"?>
+<?rfc inline="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude"  category="std" docName="draft-ietf-raviolli-trusted-domain-srv6"
+     ipr="trust200902"
+     obsoletes="" submissionType="IETF" updates="" xml:lang="en">
+    <front>
+        <title abbrev="draft-ietf-raviolli-trusted-domain-srv6">
+            IS-IS Flood Reflection
+        </title>
+
+        <author fullname="Tony Przygienda" initials="A." surname="Przygienda">
+            <organization>Juniper</organization>
+            <address>
+                <postal>
+                    <street>1137 Innovation Way
+                    </street>
+                    <city>Sunnyvale</city>
+                    <region>CA
+                    </region>
+                    <code/>
+                    <country>USA
+                    </country>
+                </postal>
+                <phone/>
+                <facsimile/>
+                <email>prz@juniper.net
+                </email>
+                <uri/>
+            </address>
+        </author>
+
+
+
+        <date year="2023"/>
+        <abstract>
+            <t>
+            </t>
+        </abstract>
+        <note title="Requirements Language">
+            <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+                "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+                document are to be interpreted as described in <xref format="default"
+                                                                     pageno="false" target="RFC2119">RFC 2119</xref>.
+            </t>
+        </note>
+    </front>
+    <middle>
+
+        <section title="Glossary" >
+            <t>
+                This section is introduced first with the intention of allowing quick reference
+                later in the document to terms introduced
+            </t>
+
+        </section>
+
+        <section title="Description" >
+            <t>
+
+            </t>
+        </section>
+
+        <section anchor="IANA" title="IANA Considerations" toc="default">
+
+            <t>
+
+            </t>
+
+        </section>
+
+        <section title="Security Considerations">
+            <t>
+            </t>
+        </section>
+
+        <section title="Acknowledgements">
+            <t>
+            </t>
+        </section>
+
+    </middle>
+    <back>
+        <references title="Informative References">
+
+        </references>
+        <references title="Normative References">
+            <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+
+        </references>
+
+    </back>
+</rfc>
