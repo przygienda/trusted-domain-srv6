@@ -62,12 +62,78 @@
                 later in the document to terms introduced
             </t>
 
+            <dl newline="true" spacing="normal">
+
+            <dt>Fail-Closed Domain:</dt>
+            <dd>
+                synonymous with a Trusted Domain.
+            </dd>
+
+            <dt>
+                Trusted Domain:
+            </dt>
+            <dd>
+                A domain that prevents processing of a protocol without explicit configuration, defined
+                in detail in <xref target="fcpd"/>.
+            </dd>
+            </dl>
+
         </section>
 
         <section title="Description" >
             <t>
 
             </t>
+        </section>
+
+        <section title="SRv6 Security Problem">
+            <t>
+                SRv6 relies in its architecture on the concept of limited domain which is too vague
+                a concept to form a solid security base.
+            </t>
+            <t>
+                Limited domains that fail can open and will invariably leak. (so far this is nonsense)
+            </t>
+            <t>
+                As per RFC8402 SRv6 that leaks into a domain is a security violation (section 8).
+            </t>
+            <t>
+                Solution is to build a limited domain that is properly trusted/closed.
+            </t>
+            <t> Exmaples of fail closed protocols: mpls/clns/llpd/bier</t>
+        </section>
+
+        <section title="Characteristics of a Fail-Closed Protocol Domain" anchor="fcpd">
+
+            <t>
+                A fail closed protocol domain is determined by following properties:
+
+            </t>
+
+            <dl>
+                <dt>
+                    Processing of the protocol packet on an interface requires explicit configuration with
+                    default drop behavior.
+                </dt>
+                <dt>
+                    Leaking of protocol packets beyond the boundary of fail-closed domain requires
+                    explicit config.
+                </dt>
+                <dt>
+                    Fail closed protocols must be identifiable by their top level (e.g. link layer) encoding.
+                </dt>
+                <dt>
+                    Classification of the protocol must be deterministic.
+                </dt>
+                <dt>
+                    Confining the protocol to the trusted domaim must not require complex processing in
+                    either HW or software.
+                </dt>
+                <dt>
+                    Boundary of a trusted domain consists of a set of interfaces that exhibit default
+                    behavior.
+                </dt>
+            </dl>
         </section>
 
         <section anchor="IANA" title="IANA Considerations" toc="default">
