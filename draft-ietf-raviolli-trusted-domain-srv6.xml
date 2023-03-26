@@ -129,12 +129,9 @@
         </section>
 
         <section title="Characteristics of a Fail-Closed Protocol Domain" anchor="fcpd">
-
             <t>
                 A fail closed protocol domain is determined by following properties:
-
             </t>
-
             <t>
                     Processing of the protocol packet on an interface requires explicit configuration with a
                 default drop behavior.</t>
@@ -185,21 +182,43 @@
                    To implement SRv6 in the context of a trusted domain, it is necessary to create a fail-closed scenario.
                    To do this, requires modification of the protoccol at both the boundary routers nd the transit nodes
               </t>
+              <section title="Boundary routers">
+                   <t>
+                        Trusted Domain boundary routers form the point at which the new ethertype is imposed.
+                        Imposition of the ethertype happens on packet ingress, at the same point as SRv6 header imposition
+                        is performed.
+                   </t>
+                   <t>
+                        Boundary interfaces will, by default, drop packets already containing the srv6-td ethertype.
+                   </t>
+              </section>
+              <section title="Transit routers">
+                   <t>
+                        In the case of a transit router, should a frame not be marked with the srv6-td ethertype, the
+                        frame will be treated as a standard IPv6 packet for the purposes of handling and forwarding.
+                   </t>
+                   <t>
+                        Only frames marked with the srv6-td ethertype will be processed as SRv6 packets
+                   </t>
+                   <t>
+                        A router configured for TD-SRv6 MUST drop packets containing an SRH in the absense of the srv6-td 
+                        ethertype.
+                   </t>
+              </section>
+         </section>
               
 
         <section anchor="registry" title="Registry Considerations">
             <section anchor="IANA" title="IANA Considerations" toc="default">
 
                 <t>
-
+                     No IANA Considerations
                 </t>
-
             </section>
 
             <section anchor="IEEE" title="IEEE Considerations" toc="default">
-
                 <t>
-
+                     TD-SRv6 Ethertype: TBD0
                 </t>
 
             </section>
@@ -208,6 +227,8 @@
 
         <section title="Security Considerations">
             <t>
+                 This draft enhances the security mechanisms required by section 8 of RFC8402, and does not
+                 impose any further security considerations of its own.
             </t>
         </section>
 
