@@ -10,6 +10,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
+<?rfc revision="00"?>
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"  category="std" docName="draft-ietf-raviolli-trusted-domain-srv6"
      ipr="trust200902"
      obsoletes="" submissionType="IETF" updates="" xml:lang="en">
