@@ -134,7 +134,7 @@
             <t>
                 The proper solution is to create a trusted
                 domain that has a default fail-closed approach and a well-defined
-                red-black boundary.
+                trusted/untrusted boundary.
             </t>
             <t> Examples of fail closed protocols currently include:</t>
             <ul>
