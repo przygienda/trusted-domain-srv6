@@ -69,54 +69,79 @@
     </front>
     <middle>
 
+
+
+        <section title="Description" >
+            <t>
+                 SRv6 as designed has evoked interest from various parties,
+                though its deployment is being limited by known security problems
+                in its architecture. This document specifies a standard to create a
+                 solution that closes some of the major security concerns,
+                while retaining the basis of the SRv6 protocol.
+            </t>
+        </section>
+
         <section title="Glossary" >
             <dl newline="true" spacing="normal">
 
-            <dt>Fail-Closed Domain:</dt>
-            <dd>
-                synonymous with a Trusted Domain.
-            </dd>
+                <dt>Fail-Closed Domain:</dt>
+                <dd>
+                    synonymous with a Trusted Domain.
+                </dd>
 
-            <dt>
-                Trusted Domain:
-            </dt>
-            <dd>
-                A domain that prevents processing of a protocol without explicit configuration, defined
-                in detail in <xref target="fcpd"/>.
-            </dd>
+                <dt>
+                    Trusted Domain (TD):
+                </dt>
+                <dd>
+                    A domain that prevents processing of a protocol without explicit configuration, defined
+                    in detail in <xref target="fcpd"/>.
+                </dd>
+
+                <dt>
+                    Fail-Closed Protocol (FPC):
+                </dt>
+                <dd>
+                    A protocol that can be deployed by establishing a fail closed domain.
+                </dd>
+
+                <dt>
+                    TD-SRv6:
+                </dt>
+                <dd>
+                    SRv6 modified to become a FPC and with that allowing for easy deployment in
+                    a TD.
+                </dd>
             </dl>
 
         </section>
 
-        <section title="Description" >
-            <t>
-                 SRv6 as designed has interest from various sectors, though its deployment is being limited by the fact that
-                 there are known security problems in the protocol design. This document specifies a standard to create a
-                 solution that closes some of the major security concerns, while retaining the basis of the SRv6 protocol.
-            </t>
-        </section>
-
         <section title="The SRv6 Security Problem">
             <t>
-                SRv6 relies in its architecture on the concept of limited domain which is too vague
-                a concept to form a solid security base.
+                SRv6 relies in its architecture on the concept of limited domain which
+                as a concept suffers from lack of security that is deployable in
+                economical, scalable fashion easily.
             </t>
             <t>
-                Limited domains that fail open, can, and will, invariably leak beyond the domain due to human error. 
+                Limited domains without very careful deployment will invariably leak beyond
+                the domain and allow untrusted traffic to enter the domain and terminate
+                on any arbitrary node.
             </t>
             <t>
-                As per <xref format="default" pageno="false" target="RFC8402">RFC 8402</xref>RFC8402 Section 8, 
+                As
+                per <xref format="default" pageno="false" target="RFC8402">RFC 8402</xref>RFC8402 Section 8,
                 SRv6 that leaks beyond the border of a trusted domain creates a security violation.
             </t>
             <t>
-                The solution is to create a trusted domain that has a default fail-closed approach.
+                The proper solution is to create a trusted
+                domain that has a default fail-closed approach and a well-defined
+                red-black boundary.
             </t>
-            <t> Exmaples of fail closed protocols currently include:</t>
+            <t> Examples of fail closed protocols currently include:</t>
             <ul>
                 <li>mpls</li>
                 <li>clns</li>
                 <li>lldp</li>
-                <li>bier (default encap) </li>
+                <li>bier</li>
             </ul>
         </section>
 
@@ -128,18 +153,22 @@
                     Processing of the protocol packet on an interface requires explicit configuration with a
                 default drop behavior.</t>
                 <t>
-                    Leaking of protocol packets beyond the boundary of fail-closed domain requires
+                    Leaking according protocol packets beyond the boundary of fail-closed domain requires
                     explicit config.
                 </t>
                 <t>
-                    Fail closed protocols must be identifiable by their top level (e.g. link layer) encoding.
+                    Fail closed protocols are easily identifiable by their top level
+                    (e.g. link layer) encoding
+                    early in the packet formats and often by fields at fixed offset.
+                    In another words either their encoding or encapsulation allows to
+                    distinguish it easily from other traffic.
                 </t>
                 <t>
-                    Classification of the protocol must be deterministic.
+                    Classification of the protocol packets is completely deterministic.
                 </t>
                 <t>
-                    Confining the protocol to the trusted domaim must not require complex processing in
-                    either hardware or software, so as to allow for scalability.
+                    Confining the protocol to the trusted domaim does not require complex processing in
+                    either hardware or software to allow for scalability and economical deployment.
                 </t>
                 <t>
                     The boundary of a trusted domain consists of a set of interfaces that exhibit default
@@ -149,53 +178,80 @@
          
          <section title="SRv6 in the context of a trusted domain - an objective analysis">
               <t>
-                   It is currently impossible to differentiate SRv6 and IPv6 at the link-layer
+                   It is currently impossible to differentiate SRv6 and IPv6 at the link-layer or
+                   easily at network layer by e.g. a reserved protocol number as IPSec does.
               </t>
               <t>
-                   In the event of a frame being sent into a trusted domain, either accidently or by a malicious actor,
-                   it is possible to send the frame to a node binding the specific SID, and have the packet processed,
-                   irrespective of the content of the underlying (encapsulated) frame
+                   In the event of a packet being sent into a trusted domain, either accidentally
+                  or by a malicious actor,
+                   it is possible to send the frame to a node binding the specific SID,
+                  and have the packet processed,
+                   irrespective of the content of the underlying (encapsulated) packet.
               </t>
               <t>
-                   The current security proposals in RFC8402 section 8.2, security is based on the application of
-                   filters preventing ingress traffic at the boundary routers destined towards a SID within the domain.
-                   Such filtering is prone to configuration errors and in addition, has significant impact on TCAM utilization 
-                   on devices that have large numbers of ingress points into the domain
+                   The current security proposals in RFC8402 section 8.2, security is
+                  based on the application of
+                   filters preventing ingress traffic at the boundary routers destined
+                  towards a SID within the domain.
+                   Such filtering is prone to configuration errors and in addition,
+                  has significant impact on TCAM utilization
+                   on devices that have large numbers of ingress points into the domain.
+                  The matching itself, due to the complexity and numerous possibilities
+                  of expressing a set of SIDs will likely necessitate a complete semantic
+                  parsing of such list to guarantee fully precise matching including
+                  wildcarding in different forms.
+
               </t>
               <t> 
-                   In the context of a trusted domain, anything outside of the operators control should not be considered
-                   trusted.  This means applying filters to prevent leakage into the domain at every customer port,
-                   every server, and every cloud stack.  Any lapse in the filters can cause grevious harm
+                   In the context of a trusted domain, anything outside of the
+                  operators control should not be considered
+                   trusted.  This means applying filters to prevent
+                  leakage into the domain at every customer port,
+                   every server, and every cloud stack.
+                  The scale and complexity of maintaining such a "shorewall" is daunting
+                  and at large scale will not be likely to keep up with the
+                  timing necessary in case of attacks mounted and metamorphosing in
+                  short time intervals. An attack avoiding the filter wall may evade
+                  discovery for a long time in case of lack of sophisticated
+                  traffic analyis and analytics tools.
               </t>
          </section>
          
          <section title="Trusted-Domain Implementation">
               <t>
-                   To implement SRv6 in the context of a trusted domain, it is necessary to create a fail-closed scenario.
-                   To do this, requires modification of the protoccol at both the boundary routers and the transit nodes
-                   To do this, a distinct ethertype is used for td-srv6
+                   To implement SRv6 in the context of a trusted domain, it is necessary
+                  to modify it to allow deployment in a fail-closed boundary efficiently.
+                   This requires changes to the protocol encapsulation at both the boundary
+                  routers and the transit nodes.
+                  This document introduces a distinct ethertype to be used for td-srv6
               </t>
               <section title="Boundary routers">
                    <t>
-                        Trusted Domain boundary routers form the point at which the new ethertype is imposed.
-                        Imposition of the ethertype happens on packet ingress, at the same point as SRv6 header imposition
+                        Trusted Domain boundary routers form the point at which the new
+                       ethertype is imposed.
+                        Imposition of the ethertype happens on packet ingress,
+                       at the same point as SRv6 header imposition
                         is performed.
                    </t>
                    <t>
-                        Boundary interfaces will, by default, drop packets already containing the srv6-td ethertype.
+                        Boundary interfaces will, by default behavior, drop packets already
+                       containing the srv6-td ethertype.
                    </t>
               </section>
               <section title="Transit and egress routers">
                    <t>
-                        In the case of a transit or egress router, should a frame not be marked with the srv6-td ethertype, the
-                        frame will be treated as a standard IPv6 packet for the purposes of handling and forwarding.
+                        In the case of a transit or egress router, should a frame not
+                       be marked with the srv6-td ethertype, the
+                        frame will be treated as a standard IPv6 packet for the
+                       purposes of handling and forwarding.
                    </t>
                    <t>
-                        Only frames marked with the srv6-td ethertype will be processed as SRv6 packets
+                        Only frames marked with the srv6-td ethertype will be
+                       processed as SRv6 packets.
                    </t>
                    <t>
-                        A router configured for TD-SRv6 MUST drop packets containing an SRH in the absense of the srv6-td 
-                        ethertype.
+                        A router configured to process TD-SRv6 MUST drop packets
+                       containing an SRH if received on any ethertype except srv6-td.
                    </t>
               </section>
          </section>
