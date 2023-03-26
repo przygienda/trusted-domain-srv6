@@ -54,9 +54,6 @@
                 <uri/>
             </address>
         </author>
-
-
-
         <date year="2023"/>
         <abstract>
             <t>
@@ -73,11 +70,6 @@
     <middle>
 
         <section title="Glossary" >
-            <t>
-                This section is introduced first with the intention of allowing quick reference
-                later in the document to terms introduced
-            </t>
-
             <dl newline="true" spacing="normal">
 
             <dt>Fail-Closed Domain:</dt>
