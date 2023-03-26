@@ -12,7 +12,7 @@ Expires: 27 September 2023                               British Telecom
 
 
                           Trusted Domain SRv6
-                draft-ietf-raviolli-trusted-domain-srv6
+             draft-intarea-raviolli-trusted-domain-srv6-00
 
 Abstract
 
@@ -55,7 +55,7 @@ Copyright Notice
 
 Alston, et al.          Expires 27 September 2023               [Page 1]
 
-Internet-Draft   draft-ietf-raviolli-trusted-domain-srv6      March 2023
+Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
 
 
    extracted from this document must include Revised BSD License text as
@@ -111,7 +111,7 @@ Table of Contents
 
 Alston, et al.          Expires 27 September 2023               [Page 2]
 
-Internet-Draft   draft-ietf-raviolli-trusted-domain-srv6      March 2023
+Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
 
 
    TD-SRv6:
@@ -167,7 +167,7 @@ Internet-Draft   draft-ietf-raviolli-trusted-domain-srv6      March 2023
 
 Alston, et al.          Expires 27 September 2023               [Page 3]
 
-Internet-Draft   draft-ietf-raviolli-trusted-domain-srv6      March 2023
+Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
 
 
    Confining the protocol to the trusted domaim does not require complex
@@ -223,7 +223,7 @@ Internet-Draft   draft-ietf-raviolli-trusted-domain-srv6      March 2023
 
 Alston, et al.          Expires 27 September 2023               [Page 4]
 
-Internet-Draft   draft-ietf-raviolli-trusted-domain-srv6      March 2023
+Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
 
 
 6.1.  Boundary routers
@@ -279,7 +279,7 @@ Internet-Draft   draft-ietf-raviolli-trusted-domain-srv6      March 2023
 
 Alston, et al.          Expires 27 September 2023               [Page 5]
 
-Internet-Draft   draft-ietf-raviolli-trusted-domain-srv6      March 2023
+Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
 
 
 10.1.  Informative References

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo -- raviolli
-D=draft-raviolli-intarea-trusted-domain-srv6
+D=draft-intarea-raviolli-trusted-domain-srv6
 
 xml2rfc $D.xml
 
