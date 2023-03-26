@@ -132,7 +132,7 @@ Internet-Draft   draft-ietf-raviolli-trusted-domain-srv6      March 2023
    the border of a trusted domain creates a security violation.
 
    The proper solution is to create a trusted domain that has a default
-   fail-closed approach and a well-defined red-black boundary.
+   fail-closed approach and a well-defined trusted/untrusted boundary.
 
    Examples of fail closed protocols currently include:
 
