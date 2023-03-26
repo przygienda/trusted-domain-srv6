@@ -305,7 +305,7 @@ Authors' Addresses
 
    Tom Hill
    British Telecom
-   Email: tom.2.hill@bt.com
+   Email: tom@ninjabadger.net
 
 
    Tony Przygienda
