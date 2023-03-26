@@ -57,6 +57,11 @@
         <date year="2023"/>
         <abstract>
             <t>
+                 SRv6 as designed has evoked interest from various parties,
+                though its deployment is being limited by known security problems
+                in its architecture. This document specifies a standard to create a
+                 solution that closes some of the major security concerns,
+                while retaining the basis of the SRv6 protocol.
             </t>
         </abstract>
         <note title="Requirements Language">
@@ -68,9 +73,6 @@
         </note>
     </front>
     <middle>
-
-
-
         <section title="Description" >
             <t>
                  SRv6 as designed has evoked interest from various parties,

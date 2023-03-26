@@ -16,6 +16,11 @@ Expires: 27 September 2023                               British Telecom
 
 Abstract
 
+   SRv6 as designed has evoked interest from various parties, though its
+   deployment is being limited by known security problems in its
+   architecture.  This document specifies a standard to create a
+   solution that closes some of the major security concerns, while
+   retaining the basis of the SRv6 protocol.
 
 Requirements Language
 
@@ -45,11 +50,6 @@ Copyright Notice
    Copyright (c) 2023 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
-   This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents (https://trustee.ietf.org/
-   license-info) in effect on the date of publication of this document.
-   Please review these documents carefully, as they describe your rights
-   and restrictions with respect to this document.  Code Components
 
 
 
@@ -58,6 +58,11 @@ Alston, et al.          Expires 27 September 2023               [Page 1]
 Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
 
 
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
    extracted from this document must include Revised BSD License text as
    described in Section 4.e of the Trust Legal Provisions and are
    provided without warranty as described in the Revised BSD License.
@@ -70,15 +75,15 @@ Table of Contents
    4.  Characteristics of a Fail-Closed Protocol Domain  . . . . . .   3
    5.  SRv6 in the context of a trusted domain - an objective
            analysis  . . . . . . . . . . . . . . . . . . . . . . . .   4
-   6.  Trusted-Domain Implementation . . . . . . . . . . . . . . . .   4
+   6.  Trusted-Domain Implementation . . . . . . . . . . . . . . . .   5
      6.1.  Boundary routers  . . . . . . . . . . . . . . . . . . . .   5
      6.2.  Transit and egress routers  . . . . . . . . . . . . . . .   5
    7.  Registry Considerations . . . . . . . . . . . . . . . . . . .   5
      7.1.  IANA Considerations . . . . . . . . . . . . . . . . . . .   5
      7.2.  IEEE Considerations . . . . . . . . . . . . . . . . . . .   5
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
-   9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   5
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+   9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   6
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
      10.1.  Informative References . . . . . . . . . . . . . . . . .   6
      10.2.  Normative References . . . . . . . . . . . . . . . . . .   6
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   6
@@ -100,11 +105,6 @@ Table of Contents
       A domain that prevents processing of a protocol without explicit
       configuration, defined in detail in Section 4.
 
-   Fail-Closed Protocol (FPC):
-      A protocol that can be deployed by establishing a fail closed
-      domain.
-
-
 
 
 
@@ -113,6 +113,10 @@ Alston, et al.          Expires 27 September 2023               [Page 2]
 
 Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
 
+
+   Fail-Closed Protocol (FPC):
+      A protocol that can be deployed by establishing a fail closed
+      domain.
 
    TD-SRv6:
       SRv6 modified to become a FPC and with that allowing for easy
@@ -159,16 +163,14 @@ Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
    fields at fixed offset.  In another words either their encoding or
    encapsulation allows to distinguish it easily from other traffic.
 
-   Classification of the protocol packets is completely deterministic.
-
-
-
 
 
 Alston, et al.          Expires 27 September 2023               [Page 3]
 
 Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
 
+
+   Classification of the protocol packets is completely deterministic.
 
    Confining the protocol to the trusted domaim does not require complex
    processing in either hardware or software to allow for scalability
@@ -210,13 +212,11 @@ Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
    avoiding the filter wall may evade discovery for a long time in case
    of lack of sophisticated traffic analyis and analytics tools.
 
-6.  Trusted-Domain Implementation
 
-   To implement SRv6 in the context of a trusted domain, it is necessary
-   to modify it to allow deployment in a fail-closed boundary
-   efficiently.  This requires changes to the protocol encapsulation at
-   both the boundary routers and the transit nodes.  This document
-   introduces a distinct ethertype to be used for td-srv6
+
+
+
+
 
 
 
@@ -225,6 +225,14 @@ Alston, et al.          Expires 27 September 2023               [Page 4]
 
 Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
 
+
+6.  Trusted-Domain Implementation
+
+   To implement SRv6 in the context of a trusted domain, it is necessary
+   to modify it to allow deployment in a fail-closed boundary
+   efficiently.  This requires changes to the protocol encapsulation at
+   both the boundary routers and the transit nodes.  This document
+   introduces a distinct ethertype to be used for td-srv6
 
 6.1.  Boundary routers
 
@@ -263,6 +271,17 @@ Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
    RFC8402, and does not impose any further security considerations of
    its own.
 
+
+
+
+
+
+
+Alston, et al.          Expires 27 September 2023               [Page 5]
+
+Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
+
+
 9.  Contributors
 
    Weiqiang Cheng
@@ -274,13 +293,6 @@ Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
    anthony.somerset@liquid.tech
 
 10.  References
-
-
-
-Alston, et al.          Expires 27 September 2023               [Page 5]
-
-Internet-Draft  draft-intarea-raviolli-trusted-domain-sr      March 2023
-
 
 10.1.  Informative References
 
@@ -314,18 +326,6 @@ Authors' Addresses
    Sunnyvale, CA
    United States of America
    Email: prz@juniper.net
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
