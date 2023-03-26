@@ -90,7 +90,7 @@
 
         <section title="Description" >
             <t>
-                 SRv6 as designed has interest from various sectors, though is deployment is being limited by the fact that
+                 SRv6 as designed has interest from various sectors, though its deployment is being limited by the fact that
                  there are known security problems in the protocol design. This document specifies a standard to create a
                  solution that closes some of the major security concerns, while retaining the basis of the SRv6 protocol.
             </t>
@@ -115,8 +115,8 @@
             <ul>
                 <li>mpls</li>
                 <li>clns</li>
-                <li>llpd</li>
-                <li>bier</li>
+                <li>lldp</li>
+                <li>bier (default encap) </li>
             </ul>
         </section>
 
@@ -184,9 +184,9 @@
                         Boundary interfaces will, by default, drop packets already containing the srv6-td ethertype.
                    </t>
               </section>
-              <section title="Transit routers">
+              <section title="Transit and egress routers">
                    <t>
-                        In the case of a transit router, should a frame not be marked with the srv6-td ethertype, the
+                        In the case of a transit or egress router, should a frame not be marked with the srv6-td ethertype, the
                         frame will be treated as a standard IPv6 packet for the purposes of handling and forwarding.
                    </t>
                    <t>
