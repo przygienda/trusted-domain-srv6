@@ -173,6 +173,7 @@
               <t>
                    To implement SRv6 in the context of a trusted domain, it is necessary to create a fail-closed scenario.
                    To do this, requires modification of the protoccol at both the boundary routers and the transit nodes
+                   To do this, a distinct ethertype is used for td-srv6
               </t>
               <section title="Boundary routers">
                    <t>
