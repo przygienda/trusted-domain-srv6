@@ -172,7 +172,7 @@
          <section title="Trusted-Domain Implementation">
               <t>
                    To implement SRv6 in the context of a trusted domain, it is necessary to create a fail-closed scenario.
-                   To do this, requires modification of the protoccol at both the boundary routers nd the transit nodes
+                   To do this, requires modification of the protoccol at both the boundary routers and the transit nodes
               </t>
               <section title="Boundary routers">
                    <t>
