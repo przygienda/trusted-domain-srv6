@@ -15,7 +15,7 @@
      obsoletes="" submissionType="IETF" updates="" xml:lang="en">
     <front>
         <title abbrev="draft-ietf-raviolli-trusted-domain-srv6">
-            IS-IS Flood Reflection
+            Trusted Domain SRv6
         </title>
 
         <author fullname="Andrew Alston" initials="A." surname="Alston">
@@ -110,15 +110,22 @@
                 a concept to form a solid security base.
             </t>
             <t>
-                Limited domains that fail can open, can, and will, invariably leak beyond the domain due to human error. 
+                Limited domains that fail open, can, and will, invariably leak beyond the domain due to human error. 
             </t>
             <t>
-                As per RFC8402 Section 8, SRv6 that leaks beyond the border of a trusted domain creates a security violation.
+                As per <xref format="default" pageno="false" target="RFC8402">RFC 8402</xref>RFC8402 Section 8, 
+                SRv6 that leaks beyond the border of a trusted domain creates a security violation.
             </t>
             <t>
-                The solution is to create a trusted domain that has a default fail-closed approach/
+                The solution is to create a trusted domain that has a default fail-closed approach.
             </t>
-            <t> Exmaples of fail closed protocols currently include: mpls/clns/llpd/bier</t>
+            <t> Exmaples of fail closed protocols currently include:</t>
+            <ul>
+                <li>mpls</li>
+                <li>clns</li>
+                <li>llpd</li>
+                <li>bier</li>
+            </ul>
         </section>
 
         <section title="Characteristics of a Fail-Closed Protocol Domain" anchor="fcpd">
@@ -129,7 +136,7 @@
             </t>
 
             <t>
-                    Processing of the protocol packet on an interface requires explicit configuration with
+                    Processing of the protocol packet on an interface requires explicit configuration with a
                 default drop behavior.</t>
                 <t>
                     Leaking of protocol packets beyond the boundary of fail-closed domain requires
@@ -180,11 +187,22 @@
               </t>
               
 
-        <section anchor="IANA" title="IANA Considerations" toc="default">
+        <section anchor="registry" title="Registry Considerations">
+            <section anchor="IANA" title="IANA Considerations" toc="default">
 
-            <t>
+                <t>
 
-            </t>
+                </t>
+
+            </section>
+
+            <section anchor="IEEE" title="IEEE Considerations" toc="default">
+
+                <t>
+
+                </t>
+
+            </section>
 
         </section>
 
@@ -205,6 +223,7 @@
         </references>
         <references title="Normative References">
             <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+            <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8402.xml"/>
 
         </references>
 
