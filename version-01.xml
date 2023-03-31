@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?rfc toc="yes"?>
+<?rfc tocompact="yes"?>
+<?rfc tocdepth="3"?>
+<?rfc tocindent="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc comments="no"?>
+<?rfc inline="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude"  category="std" docName="draft-ietf-raviolli-trusted-domain-srv6"
+     ipr="trust200902"
+     obsoletes="" submissionType="IETF" updates="" xml:lang="en">
+    <front>
+        <title abbrev="draft-ietf-raviolli-trusted-domain-srv6">
+            Trusted Domain SRv6
+        </title>
+
+        <author fullname="Andrew Alston" initials="A." surname="Alston">
+            <organization>Liquid Intelligent Technologies</organization>
+            <address>
+                <email>andrew-ietf@liquid.tech
+                </email>
+                <uri/>
+            </address>
+        </author>
+        <author fullname="Tom Hill" initials="T." surname="Hill">
+            <organization>British Telecom</organization>
+            <address>
+                <email>tom.2.hill@bt.com
+                </email>
+                <uri/>
+            </address>
+        </author>
+        <author fullname="Tony Przygienda" initials="A." surname="Przygienda">
+            <organization>Juniper</organization>
+            <address>
+                <postal>
+                    <street>1137 Innovation Way
+                    </street>
+                    <city>Sunnyvale</city>
+                    <region>CA
+                    </region>
+                    <code/>
+                    <country>USA
+                    </country>
+                </postal>
+                <phone/>
+                <facsimile/>
+                <email>prz@juniper.net
+                </email>
+                <uri/>
+            </address>
+        </author>
+        <date year="2023"/>
+        <abstract>
+            <t>
+            </t>
+        </abstract>
+        <note title="Requirements Language">
+            <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+                "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+                document are to be interpreted as described in <xref format="default"
+                                                                     pageno="false" target="RFC2119">RFC 2119</xref>.
+            </t>
+        </note>
+    </front>
+    <middle>
+
+
+
+        <section title="Description" >
+            <t>
+                SRv6 as designed has evoked interest from various parties,
+                though its deployment is being limited by known security problems
+                in its architecture. This document specifies a standard to create a
+                solution that closes some of the major security concerns,
+                while retaining the basis of the SRv6 protocol.
+            </t>
+        </section>
+
+        <section title="Glossary" >
+            <dl newline="true" spacing="normal">
+
+                <dt>Fail-Closed Domain:</dt>
+                <dd>
+                    synonymous with a Trusted Domain.
+                </dd>
+
+                <dt>
+                    Trusted Domain (TD):
+                </dt>
+                <dd>
+                    A domain that prevents processing of a protocol without explicit configuration, defined
+                    in detail in <xref target="fcpd"/>.
+                </dd>
+
+                <dt>
+                    Fail-Closed Protocol (FPC):
+                </dt>
+                <dd>
+                    A protocol that can be deployed by establishing a fail closed domain.
+                </dd>
+
+                <dt>
+                    TD-SRv6:
+                </dt>
+                <dd>
+                    SRv6 modified to become a FPC and with that allowing for easy deployment in
+                    a TD.
+                </dd>
+            </dl>
+
+        </section>
+
+        <section title="The SRv6 Security Problem">
+            <t>
+                SRv6 relies in its architecture on the concept of limited domain which
+                as a concept suffers from lack of security that is deployable in
+                economical, scalable fashion easily.
+            </t>
+            <t>
+                Limited domains without very careful deployment will invariably leak beyond
+                the domain and allow untrusted traffic to enter the domain and terminate
+                on any arbitrary node.
+            </t>
+            <t>
+                As
+                per <xref format="default" pageno="false" target="RFC8402">RFC 8402</xref>RFC8402 Section 8,
+                SRv6 that leaks beyond the border of a trusted domain creates a security violation.
+            </t>
+            <t>
+                The proper solution is to create a trusted
+                domain that has a default fail-closed approach and a well-defined
+                red-black boundary.
+            </t>
+            <t> Examples of fail closed protocols currently include:</t>
+            <ul>
+                <li>mpls</li>
+                <li>clns</li>
+                <li>lldp</li>
+                <li>bier</li>
+            </ul>
+        </section>
+
+        <section title="Characteristics of a Fail-Closed Protocol Domain" anchor="fcpd">
+            <t>
+                A fail closed protocol domain is determined by following properties:
+            </t>
+            <t>
+                Processing of the protocol packet on an interface requires explicit configuration with a
+                default drop behavior.</t>
+            <t>
+                Leaking according protocol packets beyond the boundary of fail-closed domain requires
+                explicit config.
+            </t>
+            <t>
+                Fail closed protocols are easily identifiable by their top level
+                (e.g. link layer) encoding
+                early in the packet formats and often by fields at fixed offset.
+                In another words either their encoding or encapsulation allows to
+                distinguish it easily from other traffic.
+            </t>
+            <t>
+                Classification of the protocol packets is completely deterministic.
+            </t>
+            <t>
+                Confining the protocol to the trusted domaim does not require complex processing in
+                either hardware or software to allow for scalability and economical deployment.
+            </t>
+            <t>
+                The boundary of a trusted domain consists of a set of interfaces that exhibit default
+                behavior.
+            </t>
+        </section>
+
+        <section title="SRv6 in the context of a trusted domain - an objective analysis">
+            <t>
+                It is currently impossible to differentiate SRv6 and IPv6 at the link-layer or
+                easily at network layer by e.g. a reserved protocol number as IPSec does.
+            </t>
+            <t>
+                In the event of a packet being sent into a trusted domain, either accidentally
+                or by a malicious actor,
+                it is possible to send the frame to a node binding the specific SID,
+                and have the packet processed,
+                irrespective of the content of the underlying (encapsulated) packet.
+            </t>
+            <t>
+                The current security proposals in RFC8402 section 8.2, security is
+                based on the application of
+                filters preventing ingress traffic at the boundary routers destined
+                towards a SID within the domain.
+                Such filtering is prone to configuration errors and in addition,
+                has significant impact on TCAM utilization
+                on devices that have large numbers of ingress points into the domain.
+                The matching itself, due to the complexity and numerous possibilities
+                of expressing a set of SIDs will likely necessitate a complete semantic
+                parsing of such list to guarantee fully precise matching including
+                wildcarding in different forms.
+
+            </t>
+            <t>
+                In the context of a trusted domain, anything outside of the
+                operators control should not be considered
+                trusted.  This means applying filters to prevent
+                leakage into the domain at every customer port,
+                every server, and every cloud stack.
+                The scale and complexity of maintaining such a "shorewall" is daunting
+                and at large scale will not be likely to keep up with the
+                timing necessary in case of attacks mounted and metamorphosing in
+                short time intervals. An attack avoiding the filter wall may evade
+                discovery for a long time in case of lack of sophisticated
+                traffic analyis and analytics tools.
+            </t>
+        </section>
+
+        <section title="Trusted-Domain Implementation">
+            <t>
+                To implement SRv6 in the context of a trusted domain, it is necessary
+                to modify it to allow deployment in a fail-closed boundary efficiently.
+                This requires changes to the protocol encapsulation at both the boundary
+                routers and the transit nodes.
+                This document introduces a distinct ethertype to be used for td-srv6
+            </t>
+            <section title="Boundary routers">
+                <t>
+                    Trusted Domain boundary routers form the point at which the new
+                    ethertype is imposed.
+                    Imposition of the ethertype happens on packet ingress,
+                    at the same point as SRv6 header imposition
+                    is performed.
+                </t>
+                <t>
+                    Boundary interfaces will, by default behavior, drop packets already
+                    containing the srv6-td ethertype.
+                </t>
+            </section>
+            <section title="Transit and egress routers">
+                <t>
+                    In the case of a transit or egress router, should a frame not
+                    be marked with the srv6-td ethertype, the
+                    frame will be treated as a standard IPv6 packet for the
+                    purposes of handling and forwarding.
+                </t>
+                <t>
+                    Only frames marked with the srv6-td ethertype will be
+                    processed as SRv6 packets.
+                </t>
+                <t>
+                    A router configured to process TD-SRv6 MUST drop packets
+                    containing an SRH if received on any ethertype except srv6-td.
+                </t>
+            </section>
+        </section>
+
+
+        <section anchor="registry" title="Registry Considerations">
+            <section anchor="IANA" title="IANA Considerations" toc="default">
+
+                <t>
+                    No IANA Considerations
+                </t>
+            </section>
+
+            <section anchor="IEEE" title="IEEE Considerations" toc="default">
+                <t>
+                    TD-SRv6 Ethertype: TBD0
+                </t>
+
+            </section>
+
+        </section>
+
+        <section title="Security Considerations">
+            <t>
+                This draft enhances the security mechanisms required by section 8 of RFC8402, and does not
+                impose any further security considerations of its own.
+            </t>
+        </section>
+
+        <section title="Contributors">
+            <t>
+                Weiqiang Cheng
+            </t>
+            <t>
+                chengweiqiang@chinamobile.com
+            </t>
+        </section>
+
+    </middle>
+    <back>
+        <references title="Informative References">
+
+        </references>
+        <references title="Normative References">
+            <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+            <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8402.xml"/>
+
+        </references>
+
+    </back>
+</rfc>
