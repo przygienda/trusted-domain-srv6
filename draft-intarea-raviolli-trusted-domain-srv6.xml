@@ -137,9 +137,9 @@
 
         <section title="The SRv6 Security Problems">
             <t>
-                SRv6 <xref target="RFC8402" format="default"/> relies in its architecture on the concept of limited domain which
-                as a concept suffers from lack of security that is deployable in
-                economical, scalable fashion easily.
+                SRv6 <xref target="RFC8402" format="default"/> relies on the concept of limited domain.
+                    The application of this concept in the context of the draft however, suffers from 
+                    a lack of security that is easily deployable in an economi and scalable fashion.
             </t>
             <t>
                 Limited domains without very careful deployment will invariably leak beyond
@@ -171,24 +171,24 @@
             <t>
                     Processing of the protocol packet on an interface requires explicit configuration. Otherwise,
                 due to lack of packet classification, further processing and forwarding cannot be achieved.
-                In practical terms the behavior used most often is drop of the offending packet.</t>
+                In practical terms the behavior used most often is a drop of the offending packet.</t>
                 <t>
-                    Leaking according protocol packets beyond the boundary of fail-closed domain requires
+                    In a fail-closed protocol, leaking beyond the boundary of the domain requires
                     explicit config.
                 </t>
                 <t>
                     Fail-closed protocols are easily identifiable by their top level
                     (e.g. link layer) encoding
-                    early in the packet formats and often by fields at fixed offset.
-                    In another words either their encoding or encapsulation allows to
-                    distinguish it easily from other traffic.
+                    early in the packet formats and often by fields at a fixed offset.
+                    In another words either their encoding or encapsulation allows such packets to be 
+                    easily distinguished from other traffic.
                 </t>
                 <t>
                     Classification of the protocol packets is completely deterministic.
                 </t>
                 <t>
                     Confining the protocol to the trusted domaim does not require complex processing in
-                    either hardware or software to allow for scalabile and economical deployment.
+                    either hardware or software to allow for scalable and economical deployment.
                 </t>
                 <t>
                     The boundary of a trusted domain consists of a set of interfaces that exhibit default
@@ -233,7 +233,7 @@
                   and at large scale will not be likely to keep up with the
                   timing necessary in case of attacks mounted and metamorphosing in
                   short time intervals. An attack avoiding the filter wall may evade
-                  discovery for a long time in case of lack of sophisticated
+                  discovery for a long time in the absence of sophisticated
                   traffic analyis and analytics tools.
               </t>
          </section>
@@ -244,7 +244,7 @@
                   to modify it to allow deployment in a fail-closed boundary efficiently.
                    This requires changes to the protocol encapsulation at both the boundary
                   routers and the transit nodes.
-                  This document introduces a distinct ethertype to be used for td-srv6
+                  This document introduces a distinct ethertype to be used for TD-SRv6
                   packets.
               </t>
               <section title="Boundary routers">
@@ -257,13 +257,13 @@
                    </t>
                    <t>
                         Boundary interfaces will, by default behavior, drop packets already
-                       containing the srv6-td ethertype.
+                       containing the TD-SRv6 ethertype.
                    </t>
               </section>
               <section title="Transit and egress routers">
                    <t>
                         In the case of a transit or egress router, should a frame not
-                       be marked with the srv6-td ethertype, the
+                       be marked with the TD-SRv6 ethertype, the
                         frame will be treated as a standard IPv6 packet for the
                        purposes of handling and forwarding.
                        Even if an SRv6 packet is introduced into such domain with an ethertype
@@ -272,7 +272,7 @@
                        indistinguishable from standard IPv6 processing.
                    </t>
                    <t>
-                        Only frames marked with the srv6-td ethertype will be
+                        Only frames marked with the TD-SRv6 ethertype will be
                        processed as SRv6 packets.
                    </t>
                    <t>
@@ -283,7 +283,7 @@
               </section>
              
              <section title="Transit and egress routers not using TD-SRv6">
-                 <t>It cannot be excluded that deployment of SRv6-TD are using 
+                 <t>It cannot be excluded that deployment of TD-SRv6 are using 
                  TD-SRv6 on external interfaces but choose to revert to standard 
                  IPv6 ether type for SRv6 packets within the domain. The mechanisms required to
                  realize such a deployment and risks incurred
