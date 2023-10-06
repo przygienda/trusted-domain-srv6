@@ -5,24 +5,24 @@
 Network Working Group                                          A. Alston
 Internet-Draft                           Liquid Intelligent Technologies
 Intended status: Standards Track                                 T. Hill
-Expires: 4 October 2023                                  British Telecom
+Expires: 8 April 2024                                    British Telecom
                                                            A. Przygienda
                                                                  Juniper
                                                                 L. Jalil
                                                                  Verizon
-                                                            2 April 2023
+                                                          6 October 2023
 
 
                           Trusted Domain SRv6
-             draft-raviolli-intarea-trusted-domain-srv6-01
+             draft-raviolli-intarea-trusted-domain-srv6-02
 
 Abstract
 
    SRv6 as designed has evoked interest from various parties, though its
-   deployment is being limited by known security problems in its
-   architecture.  This document specifies a standard way to create a
-   solution that closes some of the major security concerns, while
-   retaining the basis of the SRv6 protocol.
+   deployment is being limited, amongst other things, by known security
+   problems in its architecture.  This document specifies a standard way
+   to create a solution that closes some of the major security concerns,
+   while retaining the tenants of the SRv6 protocol.
 
 Requirements Language
 
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 October 2023.
+   This Internet-Draft will expire on 8 April 2024.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Alston, et al.           Expires 4 October 2023                 [Page 1]
+Alston, et al.            Expires 8 April 2024                  [Page 1]
 
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
 
 
 Copyright Notice
@@ -75,24 +75,25 @@ Copyright Notice
 Table of Contents
 
    1.  Description . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Glossary  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Glossary  . . . . . . . . . . . . . . . . . . . . . . . . . .   3
    3.  The SRv6 Security Problems  . . . . . . . . . . . . . . . . .   3
-   4.  Characteristics of a Fail-Closed Domain . . . . . . . . . . .   3
+   4.  Characteristics of a Fail-Closed Domain . . . . . . . . . . .   4
    5.  SRv6 in the context of a trusted domain - an objective
            analysis  . . . . . . . . . . . . . . . . . . . . . . . .   4
    6.  Trusted-Domain Implementation . . . . . . . . . . . . . . . .   5
      6.1.  Boundary routers  . . . . . . . . . . . . . . . . . . . .   5
-     6.2.  Transit and egress routers  . . . . . . . . . . . . . . .   5
-     6.3.  Transit and egress routers not using TD-SRv6  . . . . . .   5
+     6.2.  Transit and egress routers  . . . . . . . . . . . . . . .   6
+     6.3.  Transit and egress routers not using TD-SRv6  . . . . . .   6
    7.  Registry Considerations . . . . . . . . . . . . . . . . . . .   6
      7.1.  IANA Considerations . . . . . . . . . . . . . . . . . . .   6
      7.2.  IEEE Considerations . . . . . . . . . . . . . . . . . . .   6
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
-   9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   6
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
-     10.1.  Informative References . . . . . . . . . . . . . . . . .   6
-     10.2.  Normative References . . . . . . . . . . . . . . . . . .   6
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   6
+   9.  Applicability Considerations  . . . . . . . . . . . . . . . .   6
+   10. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   7
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
+     11.1.  Informative References . . . . . . . . . . . . . . . . .   7
+     11.2.  Normative References . . . . . . . . . . . . . . . . . .   7
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
 
 1.  Description
 
@@ -102,17 +103,21 @@ Table of Contents
    solution that closes some of the major security concerns, while
    retaining the basis of the SRv6 protocol.
 
+
+
+
+
+
+
+Alston, et al.            Expires 8 April 2024                  [Page 2]
+
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+
+
 2.  Glossary
 
    Fail-Closed Domain:
       synonymous with a Trusted Domain.
-
-
-
-Alston, et al.           Expires 4 October 2023                 [Page 2]
-
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
-
 
    Trusted Domain (TD):
       A domain that prevents processing of a protocol without explicit
@@ -154,6 +159,17 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
 
    *  bier
 
+
+
+
+
+
+
+Alston, et al.            Expires 8 April 2024                  [Page 3]
+
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+
+
 4.  Characteristics of a Fail-Closed Domain
 
    A fail-closed domain is determined by following properties:
@@ -162,13 +178,6 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
    configuration.  Otherwise, due to lack of packet classification,
    further processing and forwarding cannot be achieved.  In practical
    terms the behavior used most often is a drop of the offending packet.
-
-
-
-Alston, et al.           Expires 4 October 2023                 [Page 3]
-
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
-
 
    In a fail-closed protocol, leaking beyond the boundary of the domain
    requires explicit config.
@@ -201,6 +210,22 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
    processed, irrespective of the content of the underlying
    (encapsulated) packet.
 
+
+
+
+
+
+
+
+
+
+
+
+Alston, et al.            Expires 8 April 2024                  [Page 4]
+
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+
+
    The security proposals in RFC8402 section 8.2 is based on the
    application of filters preventing ingress traffic at the boundary
    routers destined towards a SID within the domain.  Such filtering is
@@ -218,14 +243,6 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
    every server, and every cloud stack.  The scale and complexity of
    maintaining such a "shorewall" is daunting and at large scale will
    not be likely to keep up with the timing necessary in case of attacks
-
-
-
-Alston, et al.           Expires 4 October 2023                 [Page 4]
-
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
-
-
    mounted and metamorphosing in short time intervals.  An attack
    avoiding the filter wall may evade discovery for a long time in the
    absence of sophisticated traffic analyis and analytics tools.
@@ -241,11 +258,29 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
 6.1.  Boundary routers
 
    Trusted Domain boundary routers form the point at which the new
-   ethertype is imposed.  Imposition of the ethertype happens on packet
-   ingress, at the same point as SRv6 header imposition is performed.
+   ethertype is imposed on interfaces configured to represent such
+   boundary.  Imposition of the ethertype happens on packet ingress, at
+   the same point as SRv6 header imposition is performed.
 
-   Boundary interfaces will, by default behavior, drop packets already
-   containing the TD-SRv6 ethertype.
+   Boundary interfaces will, by default behavior and unless configured
+   otherwise, drop packets containing the TD-SRv6 ethertype already and
+   MUST drop packets containing an SRH (or otherwise being classified
+   clearly as SRv6 frame) if received on any ethertype except TD-SRv6.
+
+
+
+
+
+
+
+
+
+
+
+Alston, et al.            Expires 8 April 2024                  [Page 5]
+
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+
 
 6.2.  Transit and egress routers
 
@@ -257,30 +292,19 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
    will not occur.  Hence the resulting handling of the packet is
    indistinguishable from standard IPv6 processing.
 
-   Only frames marked with the TD-SRv6 ethertype will be processed as
-   SRv6 packets.
-
    A router configured to process TD-SRv6 MUST drop packets containing
-   an SRH if received on any ethertype except TD-SRv6.
+   an SRH (or otherwise being classified clearly as SRv6 frame) if
+   received on any ethertype except TD-SRv6 and MUST apply SRv6
+   processing if and only if the frame is marked as TD-SRv6 ethertype.
 
 6.3.  Transit and egress routers not using TD-SRv6
 
    It cannot be excluded that deployment of TD-SRv6 are using TD-SRv6 on
-   external interfaces but choose to revert to standard IPv6 ether type
-   for SRv6 packets within the domain.  The mechanisms required to
+   only a subset of external interfaces and/or choose to revert to
+   standard IPv6 ether type for SRv6 packets within some or all
+   interfaces facing the internal domain.  The mechanisms required to
    realize such a deployment and risks incurred are outside the scope of
    this document.
-
-
-
-
-
-
-
-Alston, et al.           Expires 4 October 2023                 [Page 5]
-
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
-
 
 7.  Registry Considerations
 
@@ -298,7 +322,31 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
    RFC8402, and does not impose any further security considerations of
    its own.
 
-9.  Contributors
+9.  Applicability Considerations
+
+   TD-SRv6 is applicable in situations where the transport domain using
+   SRv6 is not considered a fully trusted closed user group, i.e. not
+   every participant can be trusted to not accept IPv6 frames from other
+   domains or issue IPv6 frames within the domain using some mechanism.
+   In the latter case the attack surface to craft malicious SRv6 frames
+   looking potentially like innocuous IPv6 frames is open.  A good
+
+
+
+Alston, et al.            Expires 8 April 2024                  [Page 6]
+
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+
+
+   example being servers.  On the other hand, a fully trusted user group
+   can be assumed e.g. in overlay situation, i.e.  a transport provider
+   offering VPN service where IPv6 framed are neither injected or
+   accepted from the overlay.  In a sense, the VPN tunnel encapsulation
+   acts as security mechanism preventing the closed user group from
+   injecting IPv6 frames carried on the tunnel into the transport
+   domain.
+
+10.  Contributors
 
    Weiqiang Cheng
 
@@ -308,11 +356,11 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
 
    anthony.somerset@liquid.tech
 
-10.  References
+11.  References
 
-10.1.  Informative References
+11.1.  Informative References
 
-10.2.  Normative References
+11.2.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -331,16 +379,19 @@ Authors' Addresses
    Email: andrew-ietf@liquid.tech
 
 
-
-
-Alston, et al.           Expires 4 October 2023                 [Page 6]
-
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
-
-
    Tom Hill
    British Telecom
    Email: tom@ninjabadger.net
+
+
+
+
+
+
+
+Alston, et al.            Expires 8 April 2024                  [Page 7]
+
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
 
 
    Tony Przygienda
@@ -389,4 +440,9 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2023
 
 
 
-Alston, et al.           Expires 4 October 2023                 [Page 7]
+
+
+
+
+
+Alston, et al.            Expires 8 April 2024                  [Page 8]

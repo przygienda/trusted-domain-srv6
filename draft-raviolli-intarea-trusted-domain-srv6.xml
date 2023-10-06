@@ -15,7 +15,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude"  category="std" docName="draft-raviolli-intarea-trusted-domain-srv6-01"
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude"  category="std" docName="draft-raviolli-intarea-trusted-domain-srv6-02"
      ipr="trust200902"
      obsoletes="" submissionType="IETF" updates="" xml:lang="en">
     <front>
@@ -75,10 +75,11 @@
         <abstract>
             <t>
                  SRv6 as designed has evoked interest from various parties,
-                though its deployment is being limited by known security problems
+                though its deployment is being limited, amongst other things,
+                by known security problems
                 in its architecture. This document specifies a standard way to create a
                  solution that closes some of the major security concerns,
-                while retaining the basis of the SRv6 protocol.
+                while retaining the tenants of the SRv6 protocol.
             </t>
         </abstract>
         <note title="Requirements Language">
@@ -250,14 +251,18 @@
               <section title="Boundary routers">
                    <t>
                         Trusted Domain boundary routers form the point at which the new
-                       ethertype is imposed.
+                       ethertype is imposed on interfaces configured to represent such boundary.
                         Imposition of the ethertype happens on packet ingress,
                        at the same point as SRv6 header imposition
                         is performed.
                    </t>
                    <t>
-                        Boundary interfaces will, by default behavior, drop packets already
-                       containing the TD-SRv6 ethertype.
+                        Boundary interfaces will, by default behavior and unless
+                       configured otherwise, drop packets
+                       containing the TD-SRv6 ethertype already and
+                       MUST drop packets containing an
+                       SRH (or otherwise being classified clearly as SRv6 frame)
+                       if received on any ethertype except TD-SRv6.
                    </t>
               </section>
               <section title="Transit and egress routers">
@@ -272,20 +277,19 @@
                        indistinguishable from standard IPv6 processing.
                    </t>
                    <t>
-                        Only frames marked with the TD-SRv6 ethertype will be
-                       processed as SRv6 packets.
-                   </t>
-                   <t>
-                        A router configured to process TD-SRv6 MUST drop packets
-                       containing an SRH if received on any ethertype except TD-SRv6.
+                       A router configured to process TD-SRv6 MUST drop packets containing an
+                       SRH (or otherwise being classified clearly as SRv6 frame)
+                       if received on any ethertype except TD-SRv6 and MUST apply SRv6 processing
+                       if and only if the frame is marked as TD-SRv6 ethertype.
                    </t>
 
               </section>
              
              <section title="Transit and egress routers not using TD-SRv6">
                  <t>It cannot be excluded that deployment of TD-SRv6 are using 
-                 TD-SRv6 on external interfaces but choose to revert to standard 
-                 IPv6 ether type for SRv6 packets within the domain. The mechanisms required to
+                 TD-SRv6 on only a subset of external interfaces and/or choose to revert to standard
+                 IPv6 ether type for SRv6 packets within some or all interfaces
+                     facing the internal domain. The mechanisms required to
                  realize such a deployment and risks incurred
                      are outside the scope of this document.</t>
              </section>
@@ -314,6 +318,22 @@
                  This draft enhances the security mechanisms required by section 8 of RFC8402, and does not
                  impose any further security considerations of its own.
             </t>
+        </section>
+
+        <section title="Applicability Considerations">
+            <t>
+                TD-SRv6 is applicable in situations where the transport domain using SRv6
+                is not considered a fully trusted closed user
+                group, i.e. not every participant can be trusted to not accept IPv6 frames from other domains
+                or issue IPv6 frames within the domain using some mechanism. In the latter case the attack surface
+                to craft malicious SRv6 frames looking potentially like innocuous IPv6 frames is open. A
+                good example being
+                servers. On the other hand, a fully trusted user group can be assumed e.g. in overlay situation, i.e.
+                a transport provider offering VPN service where IPv6 framed are neither injected or accepted
+                from the overlay. In a sense, the VPN tunnel encapsulation acts as security mechanism preventing
+                the closed user group from injecting IPv6 frames carried on the tunnel into the transport domain.
+            </t>
+
         </section>
 
        <section title="Contributors">
