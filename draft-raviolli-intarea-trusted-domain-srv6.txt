@@ -5,16 +5,16 @@
 Network Working Group                                          A. Alston
 Internet-Draft                           Liquid Intelligent Technologies
 Intended status: Standards Track                                 T. Hill
-Expires: 8 April 2024                                    British Telecom
+Expires: 11 October 2024                                 British Telecom
                                                            A. Przygienda
                                                                  Juniper
                                                                 L. Jalil
                                                                  Verizon
-                                                          6 October 2023
+                                                            9 April 2024
 
 
                           Trusted Domain SRv6
-             draft-raviolli-intarea-trusted-domain-srv6-02
+             draft-raviolli-intarea-trusted-domain-srv6-03
 
 Abstract
 
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 April 2024.
+   This Internet-Draft will expire on 11 October 2024.
 
 
 
@@ -53,14 +53,14 @@ Status of This Memo
 
 
 
-Alston, et al.            Expires 8 April 2024                  [Page 1]
+Alston, et al.           Expires 11 October 2024                [Page 1]
 
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2024
 
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Alston, et al.            Expires 8 April 2024                  [Page 2]
+Alston, et al.           Expires 11 October 2024                [Page 2]
 
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2024
 
 
 2.  Glossary
@@ -165,9 +165,9 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
 
 
 
-Alston, et al.            Expires 8 April 2024                  [Page 3]
+Alston, et al.           Expires 11 October 2024                [Page 3]
 
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2024
 
 
 4.  Characteristics of a Fail-Closed Domain
@@ -221,9 +221,9 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
 
 
 
-Alston, et al.            Expires 8 April 2024                  [Page 4]
+Alston, et al.           Expires 11 October 2024                [Page 4]
 
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2024
 
 
    The security proposals in RFC8402 section 8.2 is based on the
@@ -277,9 +277,9 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
 
 
 
-Alston, et al.            Expires 8 April 2024                  [Page 5]
+Alston, et al.           Expires 11 October 2024                [Page 5]
 
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2024
 
 
 6.2.  Transit and egress routers
@@ -333,9 +333,9 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
 
 
 
-Alston, et al.            Expires 8 April 2024                  [Page 6]
+Alston, et al.           Expires 11 October 2024                [Page 6]
 
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2024
 
 
    example being servers.  On the other hand, a fully trusted user group
@@ -355,6 +355,10 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
    Anthony Somerset
 
    anthony.somerset@liquid.tech
+
+   Dan Voyer
+
+   daniel.voyer@bell.ca
 
 11.  References
 
@@ -385,13 +389,9 @@ Authors' Addresses
 
 
 
-
-
-
-
-Alston, et al.            Expires 8 April 2024                  [Page 7]
+Alston, et al.           Expires 11 October 2024                [Page 7]
 
-Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
+Internet-Draft  draft-raviolli-intarea-trusted-domain-sr      April 2024
 
 
    Tony Przygienda
@@ -445,4 +445,4 @@ Internet-Draft  draft-raviolli-intarea-trusted-domain-sr    October 2023
 
 
 
-Alston, et al.            Expires 8 April 2024                  [Page 8]
+Alston, et al.           Expires 11 October 2024                [Page 8]

@@ -15,7 +15,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude"  category="std" docName="draft-raviolli-intarea-trusted-domain-srv6-02"
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude"  category="std" docName="draft-raviolli-intarea-trusted-domain-srv6-03"
      ipr="trust200902"
      obsoletes="" submissionType="IETF" updates="" xml:lang="en">
     <front>
@@ -71,7 +71,7 @@
             </address>
         </author>
 
-        <date year="2023"/>
+        <date year="2024"/>
         <abstract>
             <t>
                  SRv6 as designed has evoked interest from various parties,
@@ -336,20 +336,24 @@
 
         </section>
 
-       <section title="Contributors">
+        <section title="Contributors">
             <t>
-                 Weiqiang Cheng 
+                Weiqiang Cheng
             </t>
-            <t> 
-                 chengweiqiang@chinamobile.com
+            <t>
+                chengweiqiang@chinamobile.com
             </t>
-                        <t>
-                 Anthony Somerset
+            <t>
+                Anthony Somerset
             </t>
-            <t> 
-                 anthony.somerset@liquid.tech
+            <t>
+                anthony.somerset@liquid.tech
             </t>
-         </section>
+            <t>Dan Voyer</t>
+            <t>
+                daniel.voyer@bell.ca
+            </t>
+        </section>
 
     </middle>
     <back>
